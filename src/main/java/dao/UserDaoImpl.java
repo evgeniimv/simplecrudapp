@@ -14,11 +14,11 @@ import java.util.List;
 public class UserDaoImpl implements UserDao {
     final private JdbcTemplate jdbcTemplate;
 
-    private final String SQL_FIND_PERSON = "SELECT * FROM Users WHERE id = ?";
-    private final String SQL_DELETE_PERSON = "DELETE FROM Users WHERE id = ?";
-    private final String SQL_UPDATE_PERSON = "UPDATE Users SET name = ?, age = ?, gender  = ? WHERE id = ?";
+    private final String SQL_FIND_PERSON = "SELECT * FROM Users WHERE user_id = ?";
+    private final String SQL_DELETE_PERSON = "DELETE FROM Users WHERE user_id = ?";
+    private final String SQL_UPDATE_PERSON = "UPDATE Users SET username = ?, age = ?, gender  = ? WHERE user_id = ?";
     private final String SQL_GET_ALL = "SELECT * FROM Users";
-    private final String SQL_INSERT_PERSON = "INSERT INTO Users(id, name, age, gender) VALUES(?,?,?,?)";
+    private final String SQL_INSERT_PERSON = "INSERT INTO Users (username, age, gender) VALUES (?,?,?)";
 
     @Autowired
     public UserDaoImpl(DataSource dataSource) {
@@ -37,14 +37,13 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public Long createUser(UserVO userVO) {
-        jdbcTemplate.update(SQL_INSERT_PERSON, userVO.getId(), userVO.getName(), userVO.getAge(),
-                userVO.getGender()) ;
-        return userVO.getId();
+        jdbcTemplate.update(SQL_INSERT_PERSON, userVO.getUsername(), userVO.getAge(), userVO.getGender());
+        return userVO.getUser_id();
     }
 
     @Override
-    public boolean updateUser(Long id, UserVO userVO) {
-        return jdbcTemplate.update(SQL_UPDATE_PERSON, userVO.getName(), userVO.getAge(), userVO.getGender(), id) > 0;
+    public boolean updateUser(UserVO userVO) {
+        return jdbcTemplate.update(SQL_UPDATE_PERSON, userVO.getUsername(), userVO.getAge(), userVO.getGender(), userVO.getUser_id()) > 0;
     }
 
     @Override

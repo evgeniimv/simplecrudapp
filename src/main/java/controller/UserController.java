@@ -39,9 +39,9 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(userDao.createUser(userVO));
     }
 
-    @PostMapping("/updateuser/{id}")
-    public ResponseEntity<Boolean> updateUser(@PathVariable long id, @ModelAttribute("user") UserVO userVO) {
-        return ResponseEntity.status(HttpStatus.OK).body(userDao.updateUser(id, userVO));
+    @PostMapping("/updateuser")
+    public ResponseEntity<Boolean> updateUser(@RequestBody UserVO userVO) {
+        return ResponseEntity.status(HttpStatus.OK).body(userDao.updateUser(userVO));
     }
 
     @PostMapping("/users/{id}:delete")

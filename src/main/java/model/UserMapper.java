@@ -11,8 +11,8 @@ public class UserMapper implements RowMapper<UserVO> {
     @Override
     public UserVO mapRow(ResultSet resultSet, int i) throws SQLException {
         final UserVO userVO = new UserVO();
-        userVO.setId(resultSet.getLong("id"));
-        userVO.setName(resultSet.getString("name"));
+        userVO.setUser_id(resultSet.getLong("user_id"));
+        userVO.setUsername(resultSet.getString("username"));
         userVO.setAge(resultSet.getInt("age"));
         userVO.setGender(resultSet.getString("gender"));
         return userVO;

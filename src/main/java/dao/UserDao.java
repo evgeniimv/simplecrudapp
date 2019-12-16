@@ -11,7 +11,7 @@ public interface UserDao {
 
     Long createUser(UserVO userVO);
 
-    boolean updateUser(Long id, UserVO userVO);
+    boolean updateUser(UserVO userVO);
 
     boolean deleteUser(Long id);
 }
